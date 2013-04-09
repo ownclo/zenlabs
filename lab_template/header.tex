@@ -1,0 +1,61 @@
+\documentclass[11pt,a4paper,oneside, reqno]{amsproc}
+\usepackage{changepage}
+\usepackage{mathtext} % русские буквы в формулах
+\usepackage[T2A]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{cmap}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+%\usepackage{concrete}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{ctable}
+\usepackage{multirow}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\oddsidemargin = 0pt
+\textwidth = 14 cm
+\topmargin = -2 cm
+\textheight = 24 cm
+\makeatletter
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\fr}{\frac}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\sub}{\subsection}
+\newcommand{\subsub}{\subsubsection}
+\newcommand{\definition}{\theoremstyle{definition}}
+\newcommand{\mult}[2]{\genfrac{\left[}{\right.}{0pt}{}{#1}{#2}}
+\renewcommand{\qed}{\begin{center} $\mathsf{QED}$ \end{center}}
+\newcommand{\al}{\alpha}
+\newcommand{\comment}[1]{\marginpar{\Small{{\sl #1}}} }
+\newcommand{\epigraph}[2]{\begin{flushright} {\em #1}\\#2\\[20 pt]
+\end{flushright}}
+\newcommand{\fx}[1]{\ensuremath{\mathit{f}_{#1}(x)}}
+\newcommand{\re}[1]{(\ref{#1})}
+\newcommand{\mh}{\mathit}
+\newcommand{\itm}[1]{\begin{itemize}	\item #1 \end{itemize}}
+\newcommand{\note}[1]{\begin{flushleft}\hbox{%
+\vrule\hspace{.5em}\parbox{ .9\textwidth}%
+{ #1}} \end{flushleft}}
+\newcommand{\Al}{\ensuremath{\mathcal{A}}}
+\newcommand{\@dotsep}{3.9}
+\newcommand{\system}[1]{\eq\left\{ \begin{aligned} #1
+\end{aligned}\right.\\[5 pt]\eeq}
+\renewcommand{\phi}{\varphi}
+
+% http://www.texnik.de/floats/caption.phtml
+% This does spacing around caption.
+%\setlength{\abovecaptionskip}{6pt}   % 0.5cm as an example
+%\setlength{\belowcaptionskip}{9pt}   % 0.5cm as an example
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Соколовский Роман}
