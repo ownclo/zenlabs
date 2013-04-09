@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'thor'
+
+# ABSOLUTE PATHS ARE COOL!
+labs_root = '/home/ownclo/workspace/zenlabs'
+
+class Labs < Thor
+
+  include Thor::Actions
+
+  desc "welcome", "Prints welcome message"
+  def welcome
+    puts <<-WELCOME
+    Good day, Gentlemen!
+
+    Pray cast a look at this primitive app for creating
+    labs. Type:
+      $ labs new lab_name
+    to see what this baby can do. Best of lucks!
+    WELCOME
+  end
+
+  desc "new PROJECT_NAME", "Creates a scaffold lab directory"
+  def new project_name
+    puts "Creating new lab at '#{project_name}/' ..."
+    directory "./templates/scaffold", "#{project_name}"
+    directory "./templates/tables", "#{project_name}/templates/tables"
+
+    # RENAMING ACTION IS MISSING IN THOR
+    FileUtils.mv("#{project_name}/lab.tex",
+                 "#{project_name}/#{project_name}.tex")
+
+    say_status("rename", "#{project_name}/lab.tex -> #{project_name}/#{project_name}.tex")
+
+    prepend_to_file "#{project_name}/makefile" do
+      "PROJECT_NAME=#{project_name}.tex\n"
+    end
+  end
+
+  desc "process INP.dat RULE.py [OUTP.dat]", "Creates OUTP.dat from INP.dat using RULE.py"
+  def process inp, rule, outp="outp.dat"
+    processor_name = "process_#{rule}"
+    copy_file "templates/tables/processor/rules_template.py",
+      processor_name
+
+    insert_into_file processor_name,
+      :after => "#<<-- INSERT YOUR RULES HERE -->>\n" do
+      File.read(rule)
+    end
+
+    outp = inp + rule.split('.')[0] + '.dat'
+  end
+end
+
+Labs.source_root(labs_root)
+Labs.start(ARGV)
