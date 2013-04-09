@@ -50,6 +50,18 @@ class Labs < Thor
     end
 
     outp = inp + rule.split('.')[0] + '.dat'
+
+    run("python #{processor_name} #{inp} #{outp}")
+  end
+
+  desc "add table.dat [SECTION]", "Generates latex table code and include it to SECTION"
+  def add table section='tables'
+    # 1. Count columns
+    # 2. Filter with 'tolatex'
+    # 3. Copy template
+    # 4. Add filtered lines to template
+    # 5. Modify {cccccc} to right number of times
+    # 6. Add \include{table.tex} to 'section.tex' file
   end
 end
 
