@@ -1,0 +1,1 @@
+require 'latex/table.rb'

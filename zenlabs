@@ -5,6 +5,11 @@ require 'thor'
 # ABSOLUTE PATHS ARE COOL!
 labs_root = '/home/ownclo/workspace/zenlabs'
 
+lib_path = File.join labs_root, 'lib'
+$:.unshift(lib_path)
+
+require 'latex'
+
 class Labs < Thor
 
   include Thor::Actions
@@ -26,6 +31,7 @@ class Labs < Thor
     puts "Creating new lab at '#{project_name}/' ..."
     directory "./templates/scaffold", "#{project_name}"
     directory "./templates/tables", "#{project_name}/templates/tables"
+    directory "./script", "#{project_name}/script"
 
     # RENAMING ACTION IS MISSING IN THOR
     FileUtils.mv("#{project_name}/lab.tex",
@@ -39,7 +45,7 @@ class Labs < Thor
   end
 
   desc "process INP.dat RULE.py [OUTP.dat]", "Creates OUTP.dat from INP.dat using RULE.py"
-  def process inp, rule, outp="outp.dat"
+  def process inp, rule, outp=NIL
     processor_name = "process_#{rule}"
     copy_file "templates/tables/processor/rules_template.py",
       processor_name
@@ -49,21 +55,62 @@ class Labs < Thor
       File.read(rule)
     end
 
-    outp = inp + rule.split('.')[0] + '.dat'
+    # inp.dat + rule1.rb => inp_rule1.dat
+    inp_short = inp.split('.')[0]
+    rule_short = rule.split('.')[0]
+    outp ||= "#{inp_short}_#{rule_short}.dat"
 
+    # YOYOYOYO python will do the trick
     run("python #{processor_name} #{inp} #{outp}")
   end
 
   desc "add table.dat [SECTION]", "Generates latex table code and include it to SECTION"
-  def add table section='tables'
+  def add table, section='tables'
     # 1. Count columns
+    begin
+      contents = File.read table
+    rescue Errno::ENOENT
+      puts "File does not exist, NOWAY"
+      exit -1
+    end
+    num_cols = LATEX::Table.count_cols(contents)
+
     # 2. Filter with 'tolatex'
+    latex_table = run("script/tolatex < #{table}", :capture => true)
+    latex_table = latex_table.lines.map do |line|
+      new_line = line.split("\n")[0]
+      new_line += "\\\\"
+    end.join("\n")
+
     # 3. Copy template
+    outp_table = "#{table.split('.')[0]}.tex"
+    copy_file "templates/tables/generator/table.tex",
+      outp_table
+
     # 4. Add filtered lines to template
+    insert_into_file outp_table,
+      :after => "%<<--INSERT CONTENTS HERE-->>\n" do
+      latex_table
+    end
+
     # 5. Modify {cccccc} to right number of times
-    # 6. Add \include{table.tex} to 'section.tex' file
+    insert_into_file outp_table,
+      :after => "%<<--INSERT TABULAR HEADER HERE-->>\n" do
+      "\\begin{tabular}{#{'c'*num_cols}} % ##{num_cols} columns\n"
+    end
+
+    # 6. Add \input{table} to 'section.tex' file
+    append_to_file "#{section}.tex" do
+      "\\input{#{outp_table.split(".tex")[0]}}"
+    end
   end
 end
+
+# TODO:
+# * Create more reasonable file structure in the
+#   target project. All-in-one is not so cool.
+# * Add preview function to the table. Surround it
+#   with header, begin/end document, and show pdf
 
 Labs.source_root(labs_root)
 Labs.start(ARGV)

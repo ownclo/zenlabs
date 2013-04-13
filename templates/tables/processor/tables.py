@@ -21,4 +21,5 @@ def plaintext(table):
     for row in table:
         rows += [' '.join([str(i) for i in row])]
     res = '\n'.join(rows)
+    res += "\n"
     return res
