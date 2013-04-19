@@ -4,7 +4,7 @@ zenlabs new box
 cd box
 
 # GENERATING TABLE
-zenlabs process inp.dat rule1.py
+zenlabs generate table inp.dat rule1.py
 zenlabs add table inp_rule1.dat
 
 # GENERATING PLOTS
