@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: ZenLabsCLI::Add</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../zenlabs.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="zenlabs">zenlabs</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">Thor</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-table">#table</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><span class="include">Thor::Actions</span></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../ZenLabsCLI.html">ZenLabsCLI</a></li>
+        
+          <li><a href="../ZenLabsCLI/Add.html">ZenLabsCLI::Add</a></li>
+        
+          <li><a href="../ZenLabsCLI/Generate.html">ZenLabsCLI::Generate</a></li>
+        
+          <li><a href="../ZenLabsCLI/ZenLabs.html">ZenLabsCLI::ZenLabs</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">ZenLabsCLI::Add</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="table-method" class="method-detail ">
+          <a name="method-i-table"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">table</span><span
+              class="method-args">(table_name, section='tables')</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="table-source">
+<pre>
+<span class="ruby-comment"># File zenlabs, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">table</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">section</span>=<span class="ruby-string">'tables'</span>
+  <span class="ruby-comment"># 1. Count columns</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">contents</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-identifier">table_name</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;File does not exist, NOWAY&quot;</span>
+    <span class="ruby-identifier">exit</span> <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">num_cols</span> = <span class="ruby-constant">LATEX</span><span class="ruby-operator">::</span><span class="ruby-constant">Table</span>.<span class="ruby-identifier">count_cols</span>(<span class="ruby-identifier">contents</span>)
+
+  <span class="ruby-comment"># 2. Filter with 'tolatex'</span>
+  <span class="ruby-identifier">latex_table</span> = <span class="ruby-identifier">run</span>(<span class="ruby-node">&quot;script/tolatex &lt; #{table_name}&quot;</span>, <span class="ruby-value">:capture</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+
+  <span class="ruby-comment"># TOLATEX works fine while in terminal or vim,</span>
+  <span class="ruby-comment"># but is not processed properly by ruby.</span>
+  <span class="ruby-comment"># So we need to manually add yet another</span>
+  <span class="ruby-comment"># backslash to the end of each line</span>
+  <span class="ruby-identifier">latex_table</span> = <span class="ruby-identifier">latex_table</span>.<span class="ruby-identifier">lines</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">new_line</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>)[<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">new_line</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;\\\\&quot;</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+
+  <span class="ruby-comment"># 3. Copy template</span>
+  <span class="ruby-identifier">outp_table</span> = <span class="ruby-node">&quot;#{table_name.split('.')[0]}.tex&quot;</span>
+  <span class="ruby-identifier">copy_file</span> <span class="ruby-string">&quot;templates/tables/generator/table.tex&quot;</span>,
+    <span class="ruby-identifier">outp_table</span>
+
+  <span class="ruby-comment"># 4. Add filtered lines to template</span>
+  <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">outp_table</span>,
+    <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;%&lt;&lt;--INSERT CONTENTS HERE--&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">latex_table</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># 5. Modify {cccccc} to right number of times</span>
+  <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">outp_table</span>,
+    <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;%&lt;&lt;--INSERT TABULAR HEADER HERE--&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;\\begin{tabular}{#{'c'*num_cols}} % ##{num_cols} columns\n&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># 6. Add \input{out_table} to 'section.tex' file</span>
+  <span class="ruby-identifier">append_to_file</span> <span class="ruby-node">&quot;#{section}.tex&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;\\input{#{outp_table.split(&quot;.tex&quot;)[0]}}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- table-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- table-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

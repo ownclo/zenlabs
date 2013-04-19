@@ -1,15 +1,15 @@
 # CREATING NEW LAB
-zenlabs new box
+#zenlabs new box
 
 cd box
 
 # GENERATING TABLE
-zenlabs generate table inp.dat rule1.py
-zenlabs add table inp_rule1.dat
+#zenlabs generate table inp.dat rule1.py
+#zenlabs add table inp_rule1.dat
 
-# GENERATING PLOTS
-#zenlabs generate plot SOURCE_TABLE_NAME [FIELDS]
-#zenlabs add plot [SECTION=plots]
+# GENERATING PLOT
+zenlabs generate plot inp_rule1.dat "1:3"
+#zenlabs add plot
 
 ## NOTE ##
 # there are 'add table' and 'add plot',

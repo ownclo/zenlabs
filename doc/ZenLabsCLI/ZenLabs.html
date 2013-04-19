@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: ZenLabsCLI::ZenLabs</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../zenlabs.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="zenlabs">zenlabs</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">Thor</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-new">#new</a></li>
+          
+          <li><a href="#method-i-welcome">#welcome</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><span class="include">Thor::Actions</span></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../ZenLabsCLI.html">ZenLabsCLI</a></li>
+        
+          <li><a href="../ZenLabsCLI/Add.html">ZenLabsCLI::Add</a></li>
+        
+          <li><a href="../ZenLabsCLI/Generate.html">ZenLabsCLI::Generate</a></li>
+        
+          <li><a href="../ZenLabsCLI/ZenLabs.html">ZenLabsCLI::ZenLabs</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">ZenLabsCLI::ZenLabs</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-i-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(project_name)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File zenlabs, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span> <span class="ruby-identifier">project_name</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Creating new lab at '#{project_name}/' ...&quot;</span>
+  <span class="ruby-identifier">directory</span> <span class="ruby-string">&quot;./templates/scaffold&quot;</span>, <span class="ruby-node">&quot;#{project_name}&quot;</span>
+  <span class="ruby-identifier">directory</span> <span class="ruby-string">&quot;./templates/tables&quot;</span>, <span class="ruby-node">&quot;#{project_name}/templates/tables&quot;</span>
+  <span class="ruby-identifier">directory</span> <span class="ruby-string">&quot;./script&quot;</span>, <span class="ruby-node">&quot;#{project_name}/script&quot;</span>
+
+  <span class="ruby-comment"># RENAMING ACTION IS MISSING IN THOR</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mv</span>(<span class="ruby-node">&quot;#{project_name}/lab.tex&quot;</span>,
+               <span class="ruby-node">&quot;#{project_name}/#{project_name}.tex&quot;</span>)
+
+  <span class="ruby-identifier">say_status</span>(<span class="ruby-string">&quot;rename&quot;</span>, <span class="ruby-node">&quot;#{project_name}/lab.tex -&gt; #{project_name}/#{project_name}.tex&quot;</span>)
+
+  <span class="ruby-identifier">prepend_to_file</span> <span class="ruby-node">&quot;#{project_name}/makefile&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;PROJECT_NAME=#{project_name}.tex\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+        <div id="welcome-method" class="method-detail ">
+          <a name="method-i-welcome"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">welcome</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="welcome-source">
+<pre>
+<span class="ruby-comment"># File zenlabs, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">welcome</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">    Good day, Gentlemen!    Pray cast a look at this primitive app for creating    labs. Type:      $ labs new lab_name    to see what this baby can do. Best of lucks!</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- welcome-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- welcome-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

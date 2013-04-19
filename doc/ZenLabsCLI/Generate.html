@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: ZenLabsCLI::Generate</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../zenlabs.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="zenlabs">zenlabs</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">Thor</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-plot">#plot</a></li>
+          
+          <li><a href="#method-i-table">#table</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><span class="include">Thor::Actions</span></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../ZenLabsCLI.html">ZenLabsCLI</a></li>
+        
+          <li><a href="../ZenLabsCLI/Add.html">ZenLabsCLI::Add</a></li>
+        
+          <li><a href="../ZenLabsCLI/Generate.html">ZenLabsCLI::Generate</a></li>
+        
+          <li><a href="../ZenLabsCLI/ZenLabs.html">ZenLabsCLI::ZenLabs</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">ZenLabsCLI::Generate</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="plot-method" class="method-detail ">
+          <a name="method-i-plot"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">plot</span><span
+              class="method-args">(table_name, spec_string="1:2", out=NIL)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="plot-source">
+<pre>
+<span class="ruby-comment"># File zenlabs, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plot</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">spec_string</span>=<span class="ruby-string">&quot;1:2&quot;</span>, <span class="ruby-identifier">out</span>=<span class="ruby-constant">NIL</span>
+  <span class="ruby-comment"># -1. Create filenames.</span>
+  <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">table_name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">'.'</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-identifier">out</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">prefix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_plot.pdf&quot;</span>
+  <span class="ruby-identifier">script_name</span> = <span class="ruby-identifier">prefix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gp&quot;</span>
+
+  <span class="ruby-comment"># 0. Copy gnuplot script template into project.</span>
+  <span class="ruby-identifier">copy_file</span> <span class="ruby-string">&quot;templates/plots/plot.gp&quot;</span>, <span class="ruby-identifier">script_name</span>
+
+  <span class="ruby-comment"># 1. Insert OUT_NAME</span>
+  <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">script_name</span>,
+    <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#&lt;&lt;--INSERT OUTPUT FILE NAME HERE--&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;set output \&quot;#{out}\&quot;\n&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># 2. Insert INP_NAME</span>
+  <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">script_name</span>,
+    <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#&lt;&lt;--INSERT INPUT FILE NAME HERE--&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;plot \&quot;#{table_name}\&quot;\\\n&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># 3. Parse spec_string</span>
+  <span class="ruby-identifier">to_plot</span> = <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">PLOT</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">spec_string</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">to_plot</span>
+
+  <span class="ruby-comment"># 4. For each curve, insert its points and splines.</span>
+  <span class="ruby-identifier">to_plot</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">columns</span>,<span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">PLOT</span>.<span class="ruby-identifier">generate_curve</span> <span class="ruby-identifier">columns</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># 5. Join generated lines with ',\\n&quot;&quot; '</span>
+  <span class="ruby-comment"># 6. Insert them into a script</span>
+  <span class="ruby-comment"># 7. Run 'gnuplot' on generated script</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- plot-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- plot-method -->
+
+      
+        <div id="table-method" class="method-detail ">
+          <a name="method-i-table"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">table</span><span
+              class="method-args">(inp, rule, outp=NIL)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="table-source">
+<pre>
+<span class="ruby-comment"># File zenlabs, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">table</span> <span class="ruby-identifier">inp</span>, <span class="ruby-identifier">rule</span>, <span class="ruby-identifier">outp</span>=<span class="ruby-constant">NIL</span>
+  <span class="ruby-identifier">processor_name</span> = <span class="ruby-node">&quot;process_#{rule}&quot;</span>
+  <span class="ruby-identifier">copy_file</span> <span class="ruby-string">&quot;templates/tables/processor/rules_template.py&quot;</span>,
+    <span class="ruby-identifier">processor_name</span>
+
+  <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">processor_name</span>,
+    <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#&lt;&lt;-- INSERT YOUR RULES HERE --&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">rule</span>)
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># inp.dat + rule1.rb =&gt; inp_rule1.dat</span>
+  <span class="ruby-identifier">inp_short</span> = <span class="ruby-identifier">inp</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">'.'</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-identifier">rule_short</span> = <span class="ruby-identifier">rule</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">'.'</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-identifier">outp</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;#{inp_short}_#{rule_short}.dat&quot;</span>
+
+  <span class="ruby-comment"># YOYOYOYO python will do the trick</span>
+  <span class="ruby-identifier">run</span>(<span class="ruby-node">&quot;python #{processor_name} #{inp} #{outp}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- table-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- table-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

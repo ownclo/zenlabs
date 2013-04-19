@@ -1,0 +1,1 @@
+require 'gnuplot/parse.rb'

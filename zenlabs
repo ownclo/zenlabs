@@ -9,6 +9,7 @@ lib_path = File.join labs_root, 'lib'
 $:.unshift(lib_path)
 
 require 'latex'
+require 'gnuplot'
 
 module ZenLabsCLI
   class Generate < Thor
@@ -39,6 +40,38 @@ module ZenLabsCLI
     desc "plot INP.dat SPEC_STRING [out.pdf]",
       "Generates a PDF plot with GnuPlot via Specification string"
     def plot table_name, spec_string="1:2", out=NIL
+      # -1. Create filenames.
+      prefix = table_name.split('.')[0]
+      out ||= prefix + "_plot.pdf"
+      script_name = prefix + ".gp"
+
+      # 0. Copy gnuplot script template into project.
+      copy_file "templates/plots/plot.gp", script_name
+
+      # 1. Insert OUT_NAME
+      insert_into_file script_name,
+        :after => "#<<--INSERT OUTPUT FILE NAME HERE-->>\n" do
+        "set output \"#{out}\"\n"
+        end
+
+      # 2. Insert INP_NAME
+      insert_into_file script_name,
+        :after => "#<<--INSERT INPUT FILE NAME HERE-->>\n" do
+        "plot \"#{table_name}\"\\\n"
+        end
+
+      # 3. Parse spec_string
+      to_plot = Gnuplot::PLOT.parse spec_string
+      p to_plot
+
+      # 4. For each curve, insert its points and splines.
+      to_plot.each_with_index do |columns,index|
+        Gnuplot::PLOT.generate_curve columns
+      end
+
+      # 5. Join generated lines with ',\\n"" '
+      # 6. Insert them into a script
+      # 7. Run 'gnuplot' on generated script
     end
   end
 
