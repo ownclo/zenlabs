@@ -10,107 +10,123 @@ $:.unshift(lib_path)
 
 require 'latex'
 
-class Labs < Thor
+module ZenLabsCLI
+  class ProcessTable < Thor
+  end
 
-  include Thor::Actions
+  class Add < Thor
+    include Thor::Actions
 
-  desc "welcome", "Prints welcome message"
-  def welcome
-    puts <<-WELCOME
+    desc "add table table.dat [SECTION]", "Generates latex table code and include it to SECTION"
+    def table table_name, section='tables'
+      # 1. Count columns
+      begin
+        contents = File.read table_name
+      rescue Errno::ENOENT
+        puts "File does not exist, NOWAY"
+        exit -1
+      end
+      num_cols = LATEX::Table.count_cols(contents)
+
+      # 2. Filter with 'tolatex'
+      latex_table = run("script/tolatex < #{table_name}", :capture => true)
+
+      # TOLATEX works fine while in terminal or vim,
+      # but is not processed properly by ruby.
+      # So we need to manually add yet another
+      # backslash to the end of each line
+      latex_table = latex_table.lines.map do |line|
+        new_line = line.split("\n")[0]
+        new_line += "\\\\"
+      end.join("\n")
+
+      # 3. Copy template
+      outp_table = "#{table_name.split('.')[0]}.tex"
+      copy_file "templates/tables/generator/table.tex",
+        outp_table
+
+      # 4. Add filtered lines to template
+      insert_into_file outp_table,
+        :after => "%<<--INSERT CONTENTS HERE-->>\n" do
+        latex_table
+        end
+
+      # 5. Modify {cccccc} to right number of times
+      insert_into_file outp_table,
+        :after => "%<<--INSERT TABULAR HEADER HERE-->>\n" do
+        "\\begin{tabular}{#{'c'*num_cols}} % ##{num_cols} columns\n"
+        end
+
+      # 6. Add \input{out_table} to 'section.tex' file
+      append_to_file "#{section}.tex" do
+        "\\input{#{outp_table.split(".tex")[0]}}"
+      end
+    end
+  end
+
+  class Generate < Thor
+  end
+
+  class ZenLabs < Thor
+    include Thor::Actions
+
+    desc "welcome", "Prints welcome message"
+    def welcome
+      puts <<-WELCOME
     Good day, Gentlemen!
 
     Pray cast a look at this primitive app for creating
     labs. Type:
       $ labs new lab_name
     to see what this baby can do. Best of lucks!
-    WELCOME
-  end
-
-  desc "new PROJECT_NAME", "Creates a scaffold lab directory"
-  def new project_name
-    puts "Creating new lab at '#{project_name}/' ..."
-    directory "./templates/scaffold", "#{project_name}"
-    directory "./templates/tables", "#{project_name}/templates/tables"
-    directory "./script", "#{project_name}/script"
-
-    # RENAMING ACTION IS MISSING IN THOR
-    FileUtils.mv("#{project_name}/lab.tex",
-                 "#{project_name}/#{project_name}.tex")
-
-    say_status("rename", "#{project_name}/lab.tex -> #{project_name}/#{project_name}.tex")
-
-    prepend_to_file "#{project_name}/makefile" do
-      "PROJECT_NAME=#{project_name}.tex\n"
-    end
-  end
-
-  desc "process INP.dat RULE.py [OUTP.dat]", "Creates OUTP.dat from INP.dat using RULE.py"
-  def process inp, rule, outp=NIL
-    processor_name = "process_#{rule}"
-    copy_file "templates/tables/processor/rules_template.py",
-      processor_name
-
-    insert_into_file processor_name,
-      :after => "#<<-- INSERT YOUR RULES HERE -->>\n" do
-      File.read(rule)
+      WELCOME
     end
 
-    # inp.dat + rule1.rb => inp_rule1.dat
-    inp_short = inp.split('.')[0]
-    rule_short = rule.split('.')[0]
-    outp ||= "#{inp_short}_#{rule_short}.dat"
+    desc "new PROJECT_NAME", "Creates a scaffold lab directory"
+    def new project_name
+      puts "Creating new lab at '#{project_name}/' ..."
+      directory "./templates/scaffold", "#{project_name}"
+      directory "./templates/tables", "#{project_name}/templates/tables"
+      directory "./script", "#{project_name}/script"
 
-    # YOYOYOYO python will do the trick
-    run("python #{processor_name} #{inp} #{outp}")
-  end
+      # RENAMING ACTION IS MISSING IN THOR
+      FileUtils.mv("#{project_name}/lab.tex",
+                   "#{project_name}/#{project_name}.tex")
 
-  desc "add table.dat [SECTION]", "Generates latex table code and include it to SECTION"
-  def add table, section='tables'
-    # 1. Count columns
-    begin
-      contents = File.read table
-    rescue Errno::ENOENT
-      puts "File does not exist, NOWAY"
-      exit -1
-    end
-    num_cols = LATEX::Table.count_cols(contents)
+      say_status("rename", "#{project_name}/lab.tex -> #{project_name}/#{project_name}.tex")
 
-    # 2. Filter with 'tolatex'
-    latex_table = run("script/tolatex < #{table}", :capture => true)
-    latex_table = latex_table.lines.map do |line|
-      new_line = line.split("\n")[0]
-      new_line += "\\\\"
-    end.join("\n")
-
-    # 3. Copy template
-    outp_table = "#{table.split('.')[0]}.tex"
-    copy_file "templates/tables/generator/table.tex",
-      outp_table
-
-    # 4. Add filtered lines to template
-    insert_into_file outp_table,
-      :after => "%<<--INSERT CONTENTS HERE-->>\n" do
-      latex_table
+      prepend_to_file "#{project_name}/makefile" do
+        "PROJECT_NAME=#{project_name}.tex\n"
+      end
     end
 
-    # 5. Modify {cccccc} to right number of times
-    insert_into_file outp_table,
-      :after => "%<<--INSERT TABULAR HEADER HERE-->>\n" do
-      "\\begin{tabular}{#{'c'*num_cols}} % ##{num_cols} columns\n"
+    desc "process INP.dat RULE.py [OUTP.dat]", "Creates OUTP.dat from INP.dat using RULE.py"
+    def process inp, rule, outp=NIL
+      processor_name = "process_#{rule}"
+      copy_file "templates/tables/processor/rules_template.py",
+        processor_name
+
+      insert_into_file processor_name,
+        :after => "#<<-- INSERT YOUR RULES HERE -->>\n" do
+        File.read(rule)
+        end
+
+      # inp.dat + rule1.rb => inp_rule1.dat
+      inp_short = inp.split('.')[0]
+      rule_short = rule.split('.')[0]
+      outp ||= "#{inp_short}_#{rule_short}.dat"
+
+      # YOYOYOYO python will do the trick
+      run("python #{processor_name} #{inp} #{outp}")
     end
 
-    # 6. Add \input{table} to 'section.tex' file
-    append_to_file "#{section}.tex" do
-      "\\input{#{outp_table.split(".tex")[0]}}"
-    end
+    desc "add [table|plot] SUBCOMMANDS", "Includes item to the report"
+    subcommand "add", Add
   end
 end
 
-# TODO:
-# * Create more reasonable file structure in the
-#   target project. All-in-one is not so cool.
-# * Add preview function to the table. Surround it
-#   with header, begin/end document, and show pdf
+# SOOO DUMMY
+ZenLabsCLI::ZenLabs.source_root(labs_root)
+ZenLabsCLI::Add.source_root(labs_root)
 
-Labs.source_root(labs_root)
-Labs.start(ARGV)
+ZenLabsCLI::ZenLabs.start(ARGV)
