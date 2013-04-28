@@ -61,7 +61,7 @@ module ZenLabsCLI
         end
 
       # 3. Parse spec_string
-      to_plot = Gnuplot::PLOT.parse spec_string
+      to_plot = Gnuplot::Parser.parse spec_string
       p to_plot
 
       # 4. For each curve, insert its points and splines.

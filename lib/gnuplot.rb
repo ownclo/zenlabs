@@ -1,1 +1,2 @@
-require 'gnuplot/parse.rb'
+require 'gnuplot/parser.rb'
+require 'gnuplot/plotter.rb'
