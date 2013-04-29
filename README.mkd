@@ -1,0 +1,109 @@
+ZENLABS
+=======
+Description
+-----------
+Zenlabs is a tool that makes a documenter happy. It is supposed to
+help students and researchers to create their structured reports
+with tables and plots. It uses LaTeX for PDF generation, gnuplot
+as a plotting system and NumPy as a data processing suite. It has
+command line interface and is designed to be highly scriptable and
+configurable, providing nevertheless some reasonable defaults which
+allows the system to be used as-is.
+
+Warning
+-------
+The system is _EXTREMELY_ unstable and unmature. It has so many internal
+dependencies and hard-coded stuff that the use of the system at the moment
+is rather impossible. Some day I'll hopefully get things done.
+
+Installation
+------------
+The "happy way" installation should roll in following steps:
+* Copy the source code
+* Modify the **labs_root** in `zenlabs` script
+* Add `zenlabs` script to your `$PATH`. (ln -s or export or whatever)
+* Install the dependencies (see below)
+* ???????
+* **PROFIT**
+
+### Dependencies ###
+ZenLabs is mere glue layer that brings together a lot of tools. To use
+it, you need to install these tools (atm) separately. ZenLabs depends upon:
+* LaTeX. `sudo apt-get install texlive-full latexmk` is the simplest answer.
+* Gnuplot. `sudo apt-get install gnuplot`.
+* Ruby2.0 and Python3.2. I am not sure whether lower versions are okay or not.
+* [NumPy](http://www.numpy.org/). I am not sure about the installation instructions, just google it.
+* [Thor](http://whatisthor.com/). That is a framework for building command-line interfaces. Rails are
+   built on it.
+
+The dependencies are likely to change. Ideally the project will come with the installation script, but
+currently that is not the case. Anyway, you just move to the next stage and start using it. The error
+messages will hopefully tell you the *PATH*.
+
+Getting started
+---------------
+Suppose that we are at the happy way. Let's initialize a new report:
+
+```bash
+$ zenlabs new example
+      create  example
+      create  example/conclusions.tex
+      create  example/header.tex
+      create  example/lab.tex
+      create  example/makefile
+      create  example/plots.tex
+      create  example/schema.tex
+      create  example/tables.tex
+      create  example/target.tex
+      create  example/title.tex
+      create  example/templates/tables
+      create  example/templates/tables/generator/table.tex
+      create  example/templates/tables/processor/rules_template.py
+      create  example/templates/tables/processor/tables.py
+      create  example/script
+      create  example/script/tolatex
+      rename  example/lab.tex -> example/example.tex
+     prepend  example/makefile
+```
+
+This will create a new directory called `example` in your current directory.
+You `cd example`, so you see a scaffold of a repo:
+
+```bash
+$ tree example
+example/
+├── conclusions.tex
+├── example.tex
+├── header.tex
+├── makefile
+├── plots.tex
+├── schema.tex
+├── script
+│   └── tolatex
+├── tables.tex
+├── target.tex
+├── templates
+│   └── tables
+│       ├── generator
+│       │   └── table.tex
+│       └── processor
+│           ├── rules_template.py
+│           └── tables.py
+└── title.tex
+```
+
+**WARNING** The project structure WILL change, because for now it is just a mess.
+
+Okay, now we have a makefile, so let's just type `make`. This will produce
+a PDF named `example.pdf`. Open it, and you'll see your scaffold report.
+*NOTE*: You should be able to modify the scaffold structure as well as create
+your own templates. That is not done yet.
+
+Processing tables
+-----------------
+
+Generating plots
+----------------
+
+Adding stuff to the report
+--------------------------
