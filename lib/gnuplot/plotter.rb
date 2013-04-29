@@ -1,39 +1,41 @@
 module Gnuplot
-  # XXX: Default stylings should be set in constructor
+  # TODO: Default stylings should be set in constructor
   class Plotter
-    def generate_points cols, color='black'
-      style = "w p pt 2 ps 0.7 lc rgb '#{color}' notitle"
-      generate_curve cols, style
+    def plot_from_columns columns, names=[1...100]
+      columns.each do |cols|
+        "LOAL"
+      end
     end
 
-    def generate_spline cols, name = "PLOT_NAME", color='black'
-      style = "title '#{name}' lt 1 lw 2 lc rgb '#{color}' s acs"
-      cols += ":(r)"
-      generate_curve cols, style
+    def plot_all lines
+      combine produce_plots(lines)
     end
 
-    def generate_curve cols, style="w lp"
-      "u #{cols} #{style}"
+    def produce_plots lines
+      lines.map do |line|
+        produce_plot(line)
+      end.flatten
     end
 
-    def combine_lines plots
-      plots.join("\\\n\"\"")
+    def combine lines
+      lines.join(",\\\n\"\"")
     end
 
-    def colors
+    def colorize lines, colors=default_colors
+      lines.zip colors do |line, color|
+        line.color = color
+      end
+      lines
+    end
+
+    private
+
+    def produce_plot line
+      line.generate_points_and_spline.flatten
+    end
+
+    def default_colors
       ["black", "blue", "#006400", "red", "purple", "brown"]
-    end
-  end
-end
-
-# LINE IS A VALUE OBJECT
-module Gnuplot
-  class Line
-    attr_reader :name, :color, :cols
-    def initialize cols='1:2', color='black', name='NICE PLOT'
-      @cols=cols
-      @color=color
-      @name=name
     end
   end
 end

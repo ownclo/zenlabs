@@ -1,67 +1,55 @@
 require_relative "../../../lib/gnuplot/plotter.rb"
+require_relative "../../../lib/gnuplot/line.rb"
 
+# This code knows about 'Line' class. It is responsible
+# for combining lines into some crazy gnuplot command.
+# That is NOT a unit test. Plotter integrates many lines,
+# so the test is rather functional.
 describe Gnuplot::Plotter do
   let(:plotter) { Gnuplot::Plotter.new }
-  let(:line) { Struct.new(:cols, :color, :name) }
-  let(:line1) { line.new(color='black',
-                         cols='1:2',
-                         name='NICE PLOT') }
-  let(:line2) { line.new(color='black',
-                         cols='1:3',
-                         name='LOAL PLOT') }
+  let(:line1) { Gnuplot::Line.new(name='NICE PLOT', color='black', cols='1:2') }
+  let(:line2) { Gnuplot::Line.new(name='LOAL PLOT', color='brown', cols='1:3') }
 
-  describe "#generate_curve" do
-    context "fully specified parameters" do
-      it "outputs gnuplot instruction for plotting curve" do
-        spec_string = "1:2"
-        style_string = "w lp notitle"
-        out = plotter.generate_curve spec_string, style_string
-        expect(out).to eq "u 1:2 w lp notitle"
-      end
-    end
-
-    context "with style non-specified" do
-      it "produces line with 'w lp'" do
-        spec_string = "1:2"
-        out = plotter.generate_curve spec_string
-        expect(out).to eq "u 1:2 w lp"
-      end
+  describe "#plot_all" do
+    it "returns a string to plot the whole stuff" do
+      outp = plotter.plot_all [line1, line2]
+      #puts outp
+      expect(outp).to match(/NICE PLOT/)
+      expect(outp).to match(/LOAL PLOT/)
+      expect(outp).to match(/lc rgb 'brown'/ && /lc rgb 'black'/)
     end
   end
 
-  describe "#generate_points" do
-    it "outputs point-plot" do
-      out = plotter.generate_points "1:2", "brown"
-      expected =  "u 1:2 w p pt 2 ps 0.7 lc rgb 'brown' notitle"
-      expect(out).to eq expected
-    end
-
-    it "color is black by default" do
-      out = plotter.generate_points "1:2"
-      expected =  "u 1:2 w p pt 2 ps 0.7 lc rgb 'black' notitle"
-      expect(out).to eq expected
+  describe "#produce_plots" do
+    it "get a list of all plots needed by gnuplot" do
+      plots = plotter.produce_plots [line1, line2]
+      #puts plots
+      expect(plots.length).to eq 4
+      expect(plots[0]).to eq line1.generate_points
+      expect(plots[3]).to eq line2.generate_spline
     end
   end
 
-  describe "#generate_spline" do
-    it "outputs nicely smoothed line" do
-      out = plotter.generate_spline "1:2", "NICE PLOT", 'brown'
-      expected = "u 1:2:(r) title 'NICE PLOT' lt 1 lw 2 lc rgb 'brown' s acs"
-      expect(out).to eq expected
-    end
-  end
-
-  describe "#combine_lines" do
+  describe "#combine" do
     it "joins lines with gnuplotish syntax" do
-      #line1 = plotter.generate_points "1:2", 
-      #line2 = plotter.generate_spline "1:2", "NICE PLOT"
-      #expected = "u 1:2 w p pt 2 ps 0.7 
+      lines = ["A", "B"]
+      combo = plotter.combine lines
+      #puts combo
+      expect(combo).to eq "A,\\\n\"\"\B"
     end
   end
 
-  describe "#generate_spline_and_points" do
-    #out = plotter.generate_spline_and_points cols="1:2",
-      #title="NICE PLOT", color="brown"
-    #expected = 
+  describe "#colorize" do
+    it "zips lines with colors" do
+      colorized = plotter.colorize [line1, line2], ["blue", "brown"]
+      expect(colorized[0].color).to eq "blue"
+      expect(colorized[1].color).to eq "brown"
+    end
+  end
+
+  describe "#plot_from_columns" do
+    it "produce a reasonable default given a column indexes" do
+      pending
+    end
   end
 end
