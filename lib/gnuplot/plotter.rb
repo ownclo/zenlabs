@@ -31,7 +31,7 @@ module Gnuplot
     private
 
     def produce_plot line
-      line.generate_points_and_spline.flatten
+      line.generate_points_and_spline
     end
 
     def default_colors
