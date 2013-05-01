@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-  <title>Class: LATEX::Table</title>
+  <title>Class: Gnuplot::Parser</title>
 
   <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="../lib/latex/table_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/latex/table.rb">lib/latex/table.rb</a></li>
+            <li><a href="../lib/gnuplot/parser_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/gnuplot/parser.rb">lib/gnuplot/parser.rb</a></li>
           
           </ul>
         </div>
@@ -65,7 +65,7 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-c-count_cols">::count_cols</a></li>
+          <li><a href="#method-c-parse">::parse</a></li>
           
         </ul>
       </div>
@@ -137,7 +137,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">LATEX::Table</h1>
+    <h1 class="class">Gnuplot::Parser</h1>
 
     <div id="description" class="description">
       
@@ -161,13 +161,13 @@
         <h3 class="section-header">Public Class Methods</h3>
 
       
-        <div id="count_cols-method" class="method-detail ">
-          <a name="method-c-count_cols"></a>
+        <div id="parse-method" class="method-detail ">
+          <a name="method-c-parse"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">count_cols</span><span
-              class="method-args">(table)</span>
+            <span class="method-name">parse</span><span
+              class="method-args">(spec_string)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -178,21 +178,20 @@
             
 
             
-            <div class="method-source-code" id="count_cols-source">
+            <div class="method-source-code" id="parse-source">
 <pre>
-<span class="ruby-comment"># File lib/latex/table.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_cols</span> <span class="ruby-identifier">table</span>
-  <span class="ruby-identifier">rows</span> = <span class="ruby-identifier">table</span>.<span class="ruby-identifier">split</span> <span class="ruby-string">&quot;\n&quot;</span>
-  <span class="ruby-identifier">num_cols</span> = <span class="ruby-identifier">rows</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">split</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-comment"># File lib/gnuplot/parser.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">spec_string</span>
+  <span class="ruby-identifier">spec_string</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">','</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- count_cols-source -->
+            </div><!-- parse-source -->
             
           </div>
 
           
 
           
-        </div><!-- count_cols-method -->
+        </div><!-- parse-method -->
 
       
       </div><!-- public-class-method-details -->

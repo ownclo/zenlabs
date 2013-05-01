@@ -91,6 +91,21 @@
     <div id="project-metadata">
       
       
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../box/makefile.html">makefile</a></li>
+        
+          <li class="file"><a href="../box/script/tolatex.html">tolatex</a></li>
+        
+          <li class="file"><a href="../script/tolatex.html">tolatex</a></li>
+        
+          <li class="file"><a href="../templates/scaffold/makefile.html">makefile</a></li>
+        
+        </ul>
+      </div>
+      
 
       <div id="classindex-section" class="section project-section">
         <h3 class="section-header">Class/Module Index
@@ -107,6 +122,14 @@
 
         <ul class="link-list">
         
+          <li><a href="../Gnuplot.html">Gnuplot</a></li>
+        
+          <li><a href="../Gnuplot/Line.html">Gnuplot::Line</a></li>
+        
+          <li><a href="../Gnuplot/Parser.html">Gnuplot::Parser</a></li>
+        
+          <li><a href="../Gnuplot/Plotter.html">Gnuplot::Plotter</a></li>
+        
           <li><a href="../ZenLabsCLI.html">ZenLabsCLI</a></li>
         
           <li><a href="../ZenLabsCLI/Add.html">ZenLabsCLI::Add</a></li>
@@ -114,6 +137,10 @@
           <li><a href="../ZenLabsCLI/Generate.html">ZenLabsCLI::Generate</a></li>
         
           <li><a href="../ZenLabsCLI/ZenLabs.html">ZenLabsCLI::ZenLabs</a></li>
+        
+          <li><a href="../LATEX.html">LATEX</a></li>
+        
+          <li><a href="../LATEX/Table.html">LATEX::Table</a></li>
         
         </ul>
         <div id="no-class-search-results" style="display: none;">No matching classes.</div>
@@ -187,20 +214,21 @@
   <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">script_name</span>,
     <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#&lt;&lt;--INSERT INPUT FILE NAME HERE--&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
     <span class="ruby-node">&quot;plot \&quot;#{table_name}\&quot;\\\n&quot;</span>
-    <span class="ruby-keyword">end</span>
-
-  <span class="ruby-comment"># 3. Parse spec_string</span>
-  <span class="ruby-identifier">to_plot</span> = <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">PLOT</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">spec_string</span>
-  <span class="ruby-identifier">p</span> <span class="ruby-identifier">to_plot</span>
-
-  <span class="ruby-comment"># 4. For each curve, insert its points and splines.</span>
-  <span class="ruby-identifier">to_plot</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">columns</span>,<span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
-    <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">PLOT</span>.<span class="ruby-identifier">generate_curve</span> <span class="ruby-identifier">columns</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-comment"># 5. Join generated lines with ',\\n&quot;&quot; '</span>
-  <span class="ruby-comment"># 6. Insert them into a script</span>
-  <span class="ruby-comment"># 7. Run 'gnuplot' on generated script</span>
+  <span class="ruby-comment"># 3. Parse spec_string</span>
+  <span class="ruby-identifier">columns</span> = <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">spec_string</span>
+
+  <span class="ruby-comment"># 4. For each curve, insert its points and splines.</span>
+  <span class="ruby-identifier">plots</span> = <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plotter</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">plot_from_columns</span> <span class="ruby-identifier">columns</span>
+
+  <span class="ruby-comment"># 5. Insert them into a script</span>
+  <span class="ruby-identifier">insert_into_file</span> <span class="ruby-identifier">script_name</span>,
+    <span class="ruby-value">:after</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#&lt;&lt;--INSERT PLOTTING INSTRUCTIONS HERE--&gt;&gt;\n&quot;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">plots</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># 6. Run 'gnuplot' on generated script</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- plot-source -->
             

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: Gnuplot::Line</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../lib/gnuplot/line_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/gnuplot/line.rb">lib/gnuplot/line.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">Object</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-c-new_from_columns">::new_from_columns</a></li>
+          
+          <li><a href="#method-i-generate_line">#generate_line</a></li>
+          
+          <li><a href="#method-i-generate_points">#generate_points</a></li>
+          
+          <li><a href="#method-i-generate_points_and_spline">#generate_points_and_spline</a></li>
+          
+          <li><a href="#method-i-generate_spline">#generate_spline</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../box/makefile.html">makefile</a></li>
+        
+          <li class="file"><a href="../box/script/tolatex.html">tolatex</a></li>
+        
+          <li class="file"><a href="../script/tolatex.html">tolatex</a></li>
+        
+          <li class="file"><a href="../templates/scaffold/makefile.html">makefile</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../Gnuplot.html">Gnuplot</a></li>
+        
+          <li><a href="../Gnuplot/Line.html">Gnuplot::Line</a></li>
+        
+          <li><a href="../Gnuplot/Parser.html">Gnuplot::Parser</a></li>
+        
+          <li><a href="../Gnuplot/Plotter.html">Gnuplot::Plotter</a></li>
+        
+          <li><a href="../ZenLabsCLI.html">ZenLabsCLI</a></li>
+        
+          <li><a href="../ZenLabsCLI/Add.html">ZenLabsCLI::Add</a></li>
+        
+          <li><a href="../ZenLabsCLI/Generate.html">ZenLabsCLI::Generate</a></li>
+        
+          <li><a href="../ZenLabsCLI/ZenLabs.html">ZenLabsCLI::ZenLabs</a></li>
+        
+          <li><a href="../LATEX.html">LATEX</a></li>
+        
+          <li><a href="../LATEX/Table.html">LATEX::Table</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">Gnuplot::Line</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="color-attribute-method" class="method-detail">
+          <a name="color"></a>
+          
+          <a name="color="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">color</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="cols-attribute-method" class="method-detail">
+          <a name="cols"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">cols</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="name-attribute-method" class="method-detail">
+          <a name="name"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">name</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(name='NICE PLOT', color='black', cols='1:2')</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/gnuplot/line.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">name</span>=<span class="ruby-string">'NICE PLOT'</span>, <span class="ruby-identifier">color</span>=<span class="ruby-string">'black'</span>, <span class="ruby-identifier">cols</span>=<span class="ruby-string">'1:2'</span>
+  <span class="ruby-ivar">@cols</span>=<span class="ruby-identifier">cols</span>
+  <span class="ruby-ivar">@color</span>=<span class="ruby-identifier">color</span>
+  <span class="ruby-ivar">@name</span>=<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+        <div id="new_from_columns-method" class="method-detail ">
+          <a name="method-c-new_from_columns"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new_from_columns</span><span
+              class="method-args">(cols)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new_from_columns-source">
+<pre>
+<span class="ruby-comment"># File lib/gnuplot/line.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_from_columns</span> <span class="ruby-identifier">cols</span>
+  <span class="ruby-identifier">line</span> = <span class="ruby-constant">Line</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">cols</span>, <span class="ruby-string">'black'</span>, <span class="ruby-identifier">cols</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new_from_columns-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new_from_columns-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="generate_line-method" class="method-detail ">
+          <a name="method-i-generate_line"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">generate_line</span><span
+              class="method-args">(cols, style="w lp")</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="generate_line-source">
+<pre>
+<span class="ruby-comment"># File lib/gnuplot/line.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_line</span> <span class="ruby-identifier">cols</span>, <span class="ruby-identifier">style</span>=<span class="ruby-string">&quot;w lp&quot;</span>
+  <span class="ruby-node">&quot;u #{cols} #{style}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- generate_line-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- generate_line-method -->
+
+      
+        <div id="generate_points-method" class="method-detail ">
+          <a name="method-i-generate_points"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">generate_points</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="generate_points-source">
+<pre>
+<span class="ruby-comment"># File lib/gnuplot/line.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_points</span>
+  <span class="ruby-identifier">style</span> = <span class="ruby-node">&quot;w p pt 2 ps 0.7 lc rgb '#{@color}' notitle&quot;</span>
+  <span class="ruby-identifier">generate_line</span> <span class="ruby-ivar">@cols</span>, <span class="ruby-identifier">style</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- generate_points-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- generate_points-method -->
+
+      
+        <div id="generate_points_and_spline-method" class="method-detail ">
+          <a name="method-i-generate_points_and_spline"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">generate_points_and_spline</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="generate_points_and_spline-source">
+<pre>
+<span class="ruby-comment"># File lib/gnuplot/line.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_points_and_spline</span>
+  [<span class="ruby-identifier">generate_points</span>, <span class="ruby-identifier">generate_spline</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- generate_points_and_spline-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- generate_points_and_spline-method -->
+
+      
+        <div id="generate_spline-method" class="method-detail ">
+          <a name="method-i-generate_spline"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">generate_spline</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="generate_spline-source">
+<pre>
+<span class="ruby-comment"># File lib/gnuplot/line.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_spline</span>
+  <span class="ruby-identifier">style</span> = <span class="ruby-node">&quot;title '#{@name}' lt 1 lw 2 lc rgb '#{@color}' s acs&quot;</span>
+  <span class="ruby-identifier">cols</span> = <span class="ruby-ivar">@cols</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:(r)&quot;</span>
+  <span class="ruby-identifier">generate_line</span> <span class="ruby-identifier">cols</span>, <span class="ruby-identifier">style</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- generate_spline-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- generate_spline-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+
