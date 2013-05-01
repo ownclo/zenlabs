@@ -35,7 +35,7 @@ describe Gnuplot::Plotter do
       lines = ["A", "B"]
       combo = plotter.combine lines
       #puts combo
-      expect(combo).to eq "A,\\\n\"\"\B"
+      expect(combo).to eq "A,\\\n\"\"\ B"
     end
   end
 
@@ -49,7 +49,8 @@ describe Gnuplot::Plotter do
 
   describe "#plot_from_columns" do
     it "produce a reasonable default given a column indexes" do
-      pending
+      out = plotter.plot_from_columns ["1:2", "3:4", "5:6"]
+      expect(out).to match(/title '[1,3,5]:[2,4,6]'/)
     end
   end
 end

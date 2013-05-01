@@ -8,7 +8,7 @@ cd box
 #zenlabs add table inp_rule1.dat
 
 # GENERATING PLOT
-zenlabs generate plot inp_rule1.dat "1:3"
+zenlabs generate plot inp_rule1.dat "1:3,4:5"
 #zenlabs add plot inp_rule1_plot.pdf
 
 ## NOTE ##

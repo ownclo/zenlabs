@@ -17,8 +17,7 @@ set style line 4 lt 1 lw 2 lc rgb "red"
 
 #plot "./INP_NAME.dat"\
 #<<--INSERT INPUT FILE NAME HERE-->>
-            u 1:2  w p pt 2 ps 0.7 lc rgb "black" notitle,\
-	   	 "" u 1:2:(r) title "PLOT_NAME" ls 4 s acs
+#<<--INSERT PLOTTING INSTRUCTIONS HERE-->>
 
 
 ### THERE IS SOME USEFUL TIPS CONCERNING GNUPLOT

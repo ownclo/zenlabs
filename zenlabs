@@ -58,20 +58,21 @@ module ZenLabsCLI
       insert_into_file script_name,
         :after => "#<<--INSERT INPUT FILE NAME HERE-->>\n" do
         "plot \"#{table_name}\"\\\n"
-        end
-
-      # 3. Parse spec_string
-      to_plot = Gnuplot::Parser.parse spec_string
-      p to_plot
-
-      # 4. For each curve, insert its points and splines.
-      to_plot.each_with_index do |columns,index|
-        Gnuplot::PLOT.generate_curve columns
       end
 
-      # 5. Join generated lines with ',\\n"" '
-      # 6. Insert them into a script
-      # 7. Run 'gnuplot' on generated script
+      # 3. Parse spec_string
+      columns = Gnuplot::Parser.parse spec_string
+
+      # 4. For each curve, insert its points and splines.
+      plots = Gnuplot::Plotter.new.plot_from_columns columns
+
+      # 5. Insert them into a script
+      insert_into_file script_name,
+        :after => "#<<--INSERT PLOTTING INSTRUCTIONS HERE-->>\n" do
+        plots
+      end
+
+      # 6. Run 'gnuplot' on generated script
     end
   end
 

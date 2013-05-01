@@ -50,4 +50,13 @@ describe Gnuplot::Line do
       expect(line.generate_points_and_spline).to eq expected
     end
   end
+
+  describe "Line.new_from_columns" do
+    it "generates a line with name and cols set" do
+      cols = "1:2"
+      line = Gnuplot::Line.new_from_columns cols
+      expect(line.name).to eq cols
+      expect(line.cols).to eq cols
+    end
+  end
 end

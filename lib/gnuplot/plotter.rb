@@ -1,10 +1,11 @@
 module Gnuplot
   # TODO: Default stylings should be set in constructor
   class Plotter
-    def plot_from_columns columns, names=[1...100]
-      columns.each do |cols|
-        "LOAL"
+    def plot_from_columns columns
+      lines = columns.map do |cols|
+        Line.new_from_columns cols
       end
+      plot_all lines
     end
 
     def plot_all lines
@@ -18,7 +19,7 @@ module Gnuplot
     end
 
     def combine lines
-      lines.join(",\\\n\"\"")
+      lines.join(",\\\n\"\" ")
     end
 
     def colorize lines, colors=default_colors

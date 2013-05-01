@@ -2,6 +2,11 @@ module Gnuplot
   class Line
     attr_reader :name, :cols
     attr_accessor :color # You can colorize it.
+
+    def self.new_from_columns cols
+      line = Line.new cols, 'black', cols
+    end
+
     def initialize name='NICE PLOT', color='black', cols='1:2'
       @cols=cols
       @color=color
