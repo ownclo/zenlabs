@@ -73,6 +73,7 @@ module ZenLabsCLI
       end
 
       # 6. Run 'gnuplot' on generated script
+      run("gnuplot #{script_name}")
     end
   end
 
