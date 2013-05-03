@@ -5,6 +5,7 @@ module Gnuplot
       lines = columns.map do |cols|
         Line.new_from_columns cols
       end
+      colorize lines
       plot_all lines
     end
 

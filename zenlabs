@@ -67,8 +67,8 @@ module ZenLabsCLI
       plots = Gnuplot::Plotter.new.plot_from_columns columns
 
       # 5. Insert them into a script
-      insert_into_file script_name,
-        :after => "#<<--INSERT PLOTTING INSTRUCTIONS HERE-->>\n" do
+      gsub_file script_name,
+        /#<<--INSERT PLOTTING INSTRUCTIONS HERE-->>\n/ do
         plots
       end
 

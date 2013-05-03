@@ -2,8 +2,8 @@ set terminal pdf enhanced
 #set output "OUT_NAME.pdf"
 #<<--INSERT OUTPUT FILE NAME HERE-->>
 
-set xlabel "X_LABEL" font "default, 6"
-set ylabel "Y_LABEL" font "default, 6"
+set xlabel "XLABEL" font "default, 6"
+set ylabel "YLABEL" font "default, 6"
 
 set key font "default, 5.75"
 set tics font "default, 5"
@@ -15,6 +15,8 @@ set style line 2 lt 1 lw 2 lc rgb "blue"
 set style line 3 lt 1 lw 2 lc rgb "#006400"
 set style line 4 lt 1 lw 2 lc rgb "red"
 
+# R is a smoothing parameter.
+r = 500
 #plot "./INP_NAME.dat"\
 #<<--INSERT INPUT FILE NAME HERE-->>
 #<<--INSERT PLOTTING INSTRUCTIONS HERE-->>
