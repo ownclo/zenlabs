@@ -10,6 +10,7 @@ $:.unshift(lib_path)
 
 require 'latex'
 require 'gnuplot'
+require 'namings'
 
 module ZenLabsCLI
   class Generate < Thor
@@ -104,7 +105,7 @@ module ZenLabsCLI
       end.join("\n")
 
       # 3. Copy template
-      outp_table = "#{table_name.split('.')[0]}.tex"
+      outp_table = Namings::strip_extension(table_name) + ".tex"
       copy_file "templates/tables/generator/table.tex",
         outp_table
 
@@ -122,7 +123,28 @@ module ZenLabsCLI
 
       # 6. Add \input{out_table} to 'section.tex' file
       append_to_file "#{section}.tex" do
-        "\\input{#{outp_table.split(".tex")[0]}}"
+        "\\input{#{Namings::strip_extension(outp_table)}}\n"
+      end
+    end
+
+    desc "add plot plot.pdf [SECTION]",
+      "Generates latex wrapper for a given plot and adds it to the report"
+    def plot plot_name, section='plots'
+      plot_strip = Namings::strip_extension plot_name
+      escaped_name = Namings::escape_special_symbols plot_strip
+      latex_name = plot_strip + ".tex"
+      # 1. Copy template.
+      copy_file "templates/plots/figure.tex",
+        latex_name
+      # 2. Insert PDF name to the template
+      gsub_file latex_name, /PDFNAME/, plot_name
+
+      # 3. Insert default name and label to the template
+      gsub_file latex_name, /PLOTNAME/, plot_strip
+      gsub_file latex_name, /ESCAPEDNAME/, escaped_name
+      # 4. Add \insert{latex_code} to 'section.tex' file.
+      append_to_file "#{section}.tex" do
+        "\\input{#{plot_strip}}\n"
       end
     end
   end

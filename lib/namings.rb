@@ -1,0 +1,1 @@
+require 'namings/extensions.rb'
