@@ -38,13 +38,13 @@ module ZenLabsCLI
     end
 
     # zenlabs generate plot table.dat "1:2,1:3,4:5" [out.pdf]
-    desc "plot INP.dat SPEC_STRING [out.pdf]",
+    desc "plot INP.dat SPEC_STRING [script.gp] [out.pdf]",
       "Generates a PDF plot with GnuPlot via Specification string"
-    def plot table_name, spec_string="1:2", out=NIL
+    def plot table_name, spec_string="1:2", script_name=NIL, out=NIL
       # -1. Create filenames.
       prefix = table_name.split('.')[0]
       out ||= prefix + "_plot.pdf"
-      script_name = prefix + ".gp"
+      script_name ||= prefix + ".gp"
 
       # 0. Copy gnuplot script template into project.
       copy_file "templates/plots/plot.gp", script_name
